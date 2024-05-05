@@ -4,29 +4,29 @@ class Reserve implements Runnable { // available berths are 1
 
     // accept wanted berths at run time
     Reserve(int i) {
-        wanted = I;
-    }
+            wanted = i;
+        }
 
-    public void run() {
-        synchronized (this) // synchronize the current object
-        { // display available berths
-            System.out.println("Available Berths=" + available);
-            if (available >= wanted) { // get the name of passenger
-                String name = Thread.currentThread().getname();
-                // allot the berth to him
-                System.out.println(wanted + " Berths reserved for" + name);
-                try {
-                    Thread.sleep(1500);
-                    available = available - wanted;
-                    // update the number of available berths
-                } catch (InterruptedException ie) {
+        public void run() {
+            synchronized (this) // synchronize the current object
+            { // display available berths
+                System.out.println("Available Berths=" + available);
+                if (available >= wanted) { // get the name of passenger
+                    String name = Thread.currentThread().getName();
+                    // allot the berth to him
+                    System.out.println(wanted + " Berths reserved for " + name);
+                    try {
+                        Thread.sleep(1500);
+                        available = available - wanted;
+                        // update the number of available berths
+                    } catch (InterruptedException ie) {
+                    }
                 }
-            }
-            // if available berths are less then display sorry
-            else
-                System.out.println("Sorry no berths available");
-        } // end of synchronization block
-    }
+                // if available berths are less then display sorry
+                else
+                    System.out.println("Sorry no berths available");
+            } // end of synchronization block
+        }
 
 }
 

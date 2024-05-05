@@ -6,19 +6,25 @@
 	"image": "mcr.microsoft.com/devcontainers/java:1-17-bookworm",
 
 	"features": {
-		"ghcr.io/devcontainers/features/java:1": {},
-		"ghcr.io/devcontainers/features/python:1": {}
-	}
-
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/devcontainers-contrib/features/maven-sdkman:2": {},
+		"ghcr.io/devcontainers-contrib/features/tomcat-sdkman:2": {}
+	},
+	
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "java -version",
-
+	"postCreateCommand": "apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get install -y firefox-esr",
 	// Configure tool-specific properties.
 	// "customizations": {},
-
+	"forwardPorts": [6080],
+	"portsAttributes": {
+	  "6080": {
+		"label": "desktop"
+	  }
+	}
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }
